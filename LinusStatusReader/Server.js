@@ -25,6 +25,7 @@ app.get("/file", (req, res) => {
     fullData.sort();
     res.json(fullData);
 });
+
 function bufferFile(filepath) {
     return fs.readFileSync(filepath,'UTF-8');
 }
