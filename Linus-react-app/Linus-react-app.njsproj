@@ -1,0 +1,81 @@
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">14.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+    <Name>Linus-react-app</Name>
+    <RootNamespace>react-app</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>ccbab452-988d-4f8d-8fef-8a68dbbae9a1</ProjectGuid>
+    <ProjectHome>
+    </ProjectHome>
+    <StartupFile>
+    </StartupFile>
+    <StartWebBrowser>False</StartWebBrowser>
+    <SearchPath>
+    </SearchPath>
+    <WorkingDirectory>.</WorkingDirectory>
+    <OutputPath>.</OutputPath>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <ProjectTypeGuids>{3AF33F2E-1136-4D97-BBB7-1795711AC8B8};{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}</ProjectTypeGuids>
+    <StartWebBrowser>false</StartWebBrowser>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+  <ItemGroup>
+    <Content Include="build\asset-manifest.json" />
+    <Content Include="build\favicon.ico" />
+    <Content Include="build\index.html" />
+    <Content Include="build\logo192.png" />
+    <Content Include="build\logo512.png" />
+    <Content Include="build\manifest.json" />
+    <Content Include="build\precache-manifest.51184ae4eb9b42c97ed88194f1ad7c0b.js" />
+    <Content Include="build\robots.txt" />
+    <Content Include="build\service-worker.js" />
+    <Content Include="build\static\css\main.d1b05096.chunk.css" />
+    <Content Include="build\static\css\main.d1b05096.chunk.css.map" />
+    <Content Include="build\static\js\2.53a8c91c.chunk.js" />
+    <Content Include="build\static\js\2.53a8c91c.chunk.js.LICENSE.txt" />
+    <Content Include="build\static\js\2.53a8c91c.chunk.js.map" />
+    <Content Include="build\static\js\main.a36059e7.chunk.js" />
+    <Content Include="build\static\js\main.a36059e7.chunk.js.map" />
+    <Content Include="build\static\js\runtime-main.dcc7b5e5.js" />
+    <Content Include="build\static\js\runtime-main.dcc7b5e5.js.map" />
+    <Content Include="build\static\media\logo.5d5d9eef.svg" />
+    <Content Include="package.json" />
+    <Content Include="public\favicon.ico" />
+    <Content Include="public\index.html" />
+    <Content Include="public\logo192.png" />
+    <Content Include="public\logo512.png" />
+    <Content Include="public\manifest.json" />
+    <Content Include="public\robots.txt" />
+    <Content Include="README.md" />
+    <Content Include="src\App.js" />
+    <Content Include="src\App.test.js" />
+    <Content Include="src\index.css" />
+    <Content Include="src\index.js" />
+    <Content Include="src\logo.svg" />
+    <Content Include="src\PackageClass.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="src\serviceWorker.js" />
+    <Content Include="src\setupTests.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="build\" />
+    <Folder Include="build\static\" />
+    <Folder Include="build\static\css\" />
+    <Folder Include="build\static\js\" />
+    <Folder Include="build\static\media\" />
+    <Folder Include="public\" />
+    <Folder Include="src\" />
+  </ItemGroup>
+  <Import Project="$(VSToolsPath)\Node.js Tools\Microsoft.NodejsToolsV2.targets" />
+</Project>

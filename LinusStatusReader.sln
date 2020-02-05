@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.28803.352
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "LinusStatusReader", "LinusStatusReader\LinusStatusReader.njsproj", "{6227A84F-0FAB-4D08-8EAA-D4AD359DF80F}"
 EndProject
-Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "Linus-react-app", "react-app\Linus-react-app.njsproj", "{CCBAB452-988D-4F8D-8FEF-8A68DBBAE9A1}"
+Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "Linus-react-app", "Linus-react-app\Linus-react-app.njsproj", "{CCBAB452-988D-4F8D-8FEF-8A68DBBAE9A1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
