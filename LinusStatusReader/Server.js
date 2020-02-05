@@ -20,11 +20,11 @@ app.get("/file", (req, res) => {
     if (fs.existsSync(ubuntuFile)) {
         fullData = bufferFile(ubuntuFile).toString("ascii").split("\r\n\r\n").map((val) => val.split("\r\n"));
     } else {
-        fullData = bufferFile(mockFile).toString("ascii").split("\r\n\r\n").map((val) => val.split("\r\n"));
+        fullData = bufferFile(mockFile).toString("ascii").split("\r\n\r\n").map((val) => val.split("\r\n"));     
     }
+    fullData.sort();
     res.json(fullData);
 });
-
 function bufferFile(filepath) {
-    return fs.readFileSync(filepath);
+    return fs.readFileSync(filepath,'UTF-8');
 }

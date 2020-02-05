@@ -1,4 +1,4 @@
-﻿Package: libws-commons-util-java
+Package: libws-commons-util-java
 Status: install ok installed
 Priority: optional
 Section: java
