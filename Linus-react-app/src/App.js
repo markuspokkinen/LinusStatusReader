@@ -12,12 +12,15 @@ export default class App extends Component {
     }
 
     componentDidMount() {
-        fetch("/file")
-            .then(response => response.json())
+        fetch("/file").then(response => response.json())
             .then(res => {
+                let listOfpackageNames = res.map(val => val.packageName)
                 console.log(res);
                 this.setState({
                     data: res,
+                    packageNames: listOfpackageNames
+                }, () => {
+                    console.log(this.state)
                 })
             })
     }

@@ -15,11 +15,28 @@ app.get("/", (req, res) => {
 });
 
 function fileToOneJson(onePackage) {
-    
     let packageName = onePackage.substring(onePackage.indexOf("Package: "), onePackage.indexOf("\r\n", onePackage.indexOf("Package: "))).split(":")[1];
-    let depends = onePackage.substring(onePackage.indexOf("Depends: "), onePackage.indexOf("\r\n", onePackage.indexOf("Depends: "))).split(",");
-    if (depends[0].split(":")[1] === packageName) depends = ["","None"];
-
+    let tmpdepends = onePackage.substring(onePackage.indexOf("Depends: "), onePackage.indexOf("\r\n", onePackage.indexOf("Depends: "))).split(",");
+    let depends;
+    if (tmpdepends[0].split(":")[1] === packageName) {
+        depends = ["", "None"];
+    } else {
+        depends = tmpdepends.map((val, index) => {
+            let element = val;
+            if (index === 0) {
+                element = val.split(":")[1];
+            }
+            if (val.includes("|")) {
+               element = element.split("|").map(value => {
+                    console.log(value);
+                    return value.split("(")[0];
+                }).reduce((acc, current) => acc = acc+" | "+ current);
+            } else {
+                element = element.split("(")[0];
+            }
+            return element;
+        });
+    }
     let desclastIndex;
     let indexOfOrigMaint = onePackage.indexOf("Original-Maintainer: ");
     let indexOfHomePage = onePackage.indexOf("Homepage: ");

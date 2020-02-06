@@ -11,20 +11,10 @@ export default class PackageClass extends Component {
                 <div style={{ textAlign: "center" }} >
                     <p style={{ display: "inline-block" }}>Dependencies: </p>
                     {
-                        this.props.Data.depends.map((element, index) => {
-                            if (index === 0) {
-                                return (
-                                    <p style={{ display: "inline-block", padding: "10px" }}> {element.split(":")[1]} </p>
-                                    )
-                            } else {
-                                return (
-                                    <p style={{ display: "inline-block", padding: "10px" }}> {element} </p>
-                                )
-                            }
-                        })
+                        this.props.Data.depends.map((element, index) => <p style={{ display: "inline-block", padding: "10px" }}> {element} </p>)
                     }
                 </div>
-                <p style={{ textAlign: "center" }}>Description: {this.props.Data.description}</p>
+                <p style={{ textAlign: "center" }}>{this.props.Data.description}</p>
             </div>
 
         );
