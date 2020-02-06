@@ -1,9 +1,19 @@
 import React, { Component } from 'react';
 export default class PackageClass extends Component {
 
+
     render() {
         return (
-            <p>Package name:{this.props.Name.split(":")[1]}</p>
+            <div>
+                <p>Package name:{}</p>
+                <p>Status:{}</p>
+                <p>Priority:{}</p>
+                <p>Section:{}</p>
+                <p>Installed-Size:{}</p>
+                Maintainer:{} Architeture:{} 
+
+                
+            </div>
 
         );
     }

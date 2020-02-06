@@ -15,8 +15,6 @@ export default class App extends Component {
             .then(res => {
                 this.setState({
                     data: res
-                }, () => {
-                    console.log(this.state);
                 })
             })
     }
@@ -26,7 +24,7 @@ export default class App extends Component {
             return (
                 <div>
                     {
-                        this.state.data.map((element) => <p>Package name: {element[0]}</p>)
+                        this.state.data.map((element) => <p>{element}</p>)
 
                     }
                 </div>
