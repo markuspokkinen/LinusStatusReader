@@ -15,20 +15,22 @@ app.get("/", (req, res) => {
 });
 
 function fileToOneJson(onePackage) {
-    let packageName = onePackage.substring(onePackage.indexOf("Package:"), onePackage.indexOf("\r\n", onePackage.indexOf("Package:")));
-    let depends = onePackage.substring(onePackage.indexOf("Depends:"), onePackage.indexOf("\r\n", onePackage.indexOf("Depends:")));
-    if (depends === packageName) depends = "";
+    
+    let packageName = onePackage.substring(onePackage.indexOf("Package: "), onePackage.indexOf("\r\n", onePackage.indexOf("Package: "))).split(":")[1];
+    let depends = onePackage.substring(onePackage.indexOf("Depends: "), onePackage.indexOf("\r\n", onePackage.indexOf("Depends: "))).split(",");
+    if (depends[0].split(":")[1] === packageName) depends = ["","None"];
 
     let desclastIndex;
-    let indexOfOrigMaint = onePackage.indexOf("Original-Maintainer:");
+    let indexOfOrigMaint = onePackage.indexOf("Original-Maintainer: ");
     let indexOfHomePage = onePackage.indexOf("Homepage: ");
 
-    if (indexOfOrigMaint === -1) desclastIndex = indexOfHomePage;
-    if (indexOfHomePage === -1) desclastIndex = indexOfOrigMaint;
+    if (indexOfOrigMaint === -1 && indexOfHomePage !== -1) desclastIndex = indexOfHomePage;
+    if (indexOfHomePage === -1 && indexOfOrigMaint !== -1) desclastIndex = indexOfOrigMaint;
     else if (indexOfHomePage < indexOfOrigMaint) desclastIndex = indexOfHomePage;
     else if (indexOfOrigMaint < indexOfHomePage) desclastIndex = indexOfOrigMaint;
-
-    let description = onePackage.substring(onePackage.indexOf("Description:"), desclastIndex);
+    else desclastIndex = onePackage.length;
+    
+    let description = onePackage.substring(onePackage.indexOf("Description: "), desclastIndex);
     return { packageName, depends, description };
 }
 module.exports = app;

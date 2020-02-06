@@ -40,7 +40,7 @@ export default class App extends Component {
                     {
                         this.state.data.map((element, index) => {
                             return (
-                                <p index={index} onClick={this.hideorshow.bind(this)} style={{ color: "blue", cursor: 'pointer', textAlign: "center" }}> {element.packageName.split(":")[1]}</p>
+                                <p index={index} onClick={this.hideorshow.bind(this)} style={{ color: "blue", cursor: 'pointer', textAlign: "center"}}> {element.packageName}</p>
                             )
                         })
                     }
