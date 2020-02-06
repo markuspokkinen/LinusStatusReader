@@ -3,20 +3,14 @@ export default class PackageClass extends Component {
 
 
     render() {
-        return (
-            <div>
-                <p>Package name:{}</p>
-                <p>Status:{}</p>
-                <p>Priority:{}</p>
-                <p>Section:{}</p>
-                <p>Installed-Size:{}</p>
-                Maintainer:{} Architeture:{} 
+        console.log(this.props.Data)
+            return (
+                <div>
+                    <p onClick>Back</p>
+                    <p>1</p>
+                    <p>2</p>
+                </div>
 
-                
-            </div>
-
-        );
+            );
     }
-
-
 }
