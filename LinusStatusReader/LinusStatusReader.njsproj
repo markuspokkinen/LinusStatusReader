@@ -31,6 +31,12 @@
   </PropertyGroup>
   <ItemGroup>
     <Content Include="assets\Status.txt" />
+    <Content Include="models\LinuxReader.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="models\Winreader.js">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="package.json" />
     <Content Include="README.md" />
     <Content Include="Server.js" />
@@ -46,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="assets\" />
+    <Folder Include="models\" />
     <Folder Include="views\" />
   </ItemGroup>
   <!-- Do not delete the following Import Project.  While this appears to do nothing it is a marker for setting TypeScript properties before our import that depends on them. -->
