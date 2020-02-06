@@ -6,9 +6,10 @@ export default class PackageClass extends Component {
         console.log(this.props.Data)
             return (
                 <div>
-                    <p onClick>Back</p>
-                    <p>1</p>
-                    <p>2</p>
+                    <p onClick={this.props.CallbackReturn} style={{ cursor: 'pointer' }}>Back</p>
+                    <p>{this.props.Data.packageName}</p>
+                    <p>{this.props.Data.depends}</p>
+                    <p>{this.props.Data.description}</p>
                 </div>
 
             );

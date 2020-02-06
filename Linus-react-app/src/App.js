@@ -22,12 +22,16 @@ export default class App extends Component {
             })
     }
     hideorshow(event) {
-        console.log(event.target)
         this.setState({
             index: parseInt(event.target.attributes.index.value),
             show: true
         });
 
+    }
+    callbackReturn() {
+        this.setState({
+            show:false
+        })
     }
     render() {
         if (this.state.data !== "" && this.state.show === false) {
@@ -44,7 +48,7 @@ export default class App extends Component {
             );
         } else if (this.state.data !== "" && this.state.show) {
             return (
-                <Packageclass Data={this.state.data[this.state.index]} />
+                <Packageclass CallbackReturn={this.callbackReturn.bind(this)} Data={this.state.data[this.state.index]} />
                 )
         } else {
             return (
