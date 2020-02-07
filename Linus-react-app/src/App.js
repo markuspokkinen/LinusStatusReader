@@ -14,7 +14,7 @@ export default class App extends Component {
     componentDidMount() {
         fetch("/file").then(response => response.json())
             .then(res => {
-                let listOfpackageNames = res.map(val => val.packageName)
+                let listOfpackageNames = res.map(val => val.packageName.trim())
                 console.log(res);
                 this.setState({
                     data: res,
@@ -31,9 +31,15 @@ export default class App extends Component {
         });
 
     }
-    callbackReturn() {
+    callbackHome() {
         this.setState({
             show:false
+        })
+    }
+    callbackNext(event) {
+        console.log(parseInt(event.target.attributes.index.value))
+        this.setState({
+            index: parseInt(event.target.attributes.index.value)
         })
     }
     render() {
@@ -51,7 +57,7 @@ export default class App extends Component {
             );
         } else if (this.state.data !== "" && this.state.show) {
             return (
-                <Packageclass CallbackReturn={this.callbackReturn.bind(this)} Data={this.state.data[this.state.index]} />
+                <Packageclass AllPackageNames={this.state.packageNames} CallbackHome={this.callbackHome.bind(this)} CallbackNext={this.callbackNext.bind(this)} Data={this.state.data[this.state.index]} />
                 )
         } else {
             return (
