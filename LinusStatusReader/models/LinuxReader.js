@@ -16,9 +16,10 @@ app.get("/", (req, res) => {
 
 function fileToOneJson(onePackage) {
     let packageName = onePackage.substring(onePackage.indexOf("Package:"), onePackage.indexOf("\n", onePackage.indexOf("Package:"))).split(":")[1];
+    if (packageName === undefined) packageName = "";
     let tmpdepends = onePackage.substring(onePackage.indexOf("Depends:"), onePackage.indexOf("\n", onePackage.indexOf("Depends:"))).split(",");
     let depends;
-    if (tmpdepends[0].split(":")[1] === packageName) depends = ["", "None"];
+    if (tmpdepends[0].split(":")[1] === undefined || tmpdepends[0].split(":")[1] === packageName) depends = ["", "None"];
     else {
         depends = tmpdepends.map((val, index) => {
             let element = val;
