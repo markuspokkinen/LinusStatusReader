@@ -50,10 +50,7 @@
     <Content Include="build\static\js\runtime-main.dcc7b5e5.js.map" />
     <Content Include="build\static\media\logo.5d5d9eef.svg" />
     <Content Include="package.json" />
-    <Content Include="public\favicon.ico" />
     <Content Include="public\index.html" />
-    <Content Include="public\logo192.png" />
-    <Content Include="public\logo512.png" />
     <Content Include="public\manifest.json" />
     <Content Include="public\robots.txt" />
     <Content Include="README.md" />

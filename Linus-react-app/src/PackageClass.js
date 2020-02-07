@@ -15,7 +15,6 @@ export default class PackageClass extends Component {
                                     console.log(this.props.AllPackageNames)
                                     console.log(value)
                                     if (this.props.AllPackageNames.includes(value.trim())) {
-                                       
                                         return <p Index={this.props.AllPackageNames.indexOf(value.trim())} style={{ display: "inline-block", padding: "10px", color: "blue", cursor: "pointer" }} onClick={this.props.CallbackNext}> {value} </p>
                                     } else {
                                         return <p style={{ display: "inline-block", padding: "10px" }}> {value} </p>
