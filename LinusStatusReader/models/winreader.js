@@ -19,14 +19,18 @@ function fileToOneJson(onePackage) {
     if (packageName === undefined) packageName = "";
     let description = getDescription(onePackage);
     let depends = getDependecies(onePackage, packageName);
-    
+
     return { packageName, depends, description };
 }
 function getDependecies(onePackage, packageName) {
     let tmpdepends = onePackage.substring(onePackage.indexOf("Depends:"), onePackage.indexOf("\r\n", onePackage.indexOf("Depends: "))).split(",");
 
+    if (packageName === "gcc-4.6-base") {
+        console.log(onePackage);
+        console.log(tmpdepends);
+    }
     let depends;
-    if (tmpdepends[0].split(":")[1] === undefined || tmpdepends[0].split(":")[1] === packageName) depends = ["", "None"];
+    if (tmpdepends[0].split(":")[1] === undefined || tmpdepends[0].split(":")[1].trim() === packageName) depends = ["None"];
     else {
         depends = tmpdepends.map((val, index) => {
             let element = val;
@@ -40,6 +44,7 @@ function getDependecies(onePackage, packageName) {
             } else {
                 element = element.split("(")[0];
             }
+            
             return element.trim();
         });
     }
@@ -55,11 +60,6 @@ function getDescription(onePackage) {
     else if (indexOfHomePage < indexOfOrigMaint) desclastIndex = indexOfHomePage;
     else if (indexOfOrigMaint < indexOfHomePage) desclastIndex = indexOfOrigMaint;
     else desclastIndex = onePackage.length;
-
-    /*   if (packageName === " apport") {
-           console.log(onePackage);
-           console.log(desclastIndex);
-       }*/
     return onePackage.substring(onePackage.indexOf("Description: "), desclastIndex);
 }
 module.exports = app;

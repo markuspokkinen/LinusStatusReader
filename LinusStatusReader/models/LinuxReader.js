@@ -16,7 +16,7 @@ app.get("/", (req, res) => {
 function getDependecies(OnePackage,packageName) {
     let tmpdepends = onePackage.substring(onePackage.indexOf("Depends:"), onePackage.indexOf("\n", onePackage.indexOf("Depends:"))).split(",");
     let depends;
-    if (tmpdepends[0].split(":")[1] === undefined || tmpdepends[0].split(":")[1] === packageName) depends = ["", "None"];
+    if (tmpdepends[0].split(":")[1] === undefined || tmpdepends[0].split(":")[1].trim() === packageName) depends = ["None"];
     else {
         depends = tmpdepends.map((val, index) => {
             let element = val;
