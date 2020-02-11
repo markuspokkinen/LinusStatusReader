@@ -10,6 +10,7 @@ export default class App extends Component {
             index: "",
             show: false
         }
+        this.renderPackagelist = this.renderPackagelist.bind(this);
     }
 
     componentDidMount() {
@@ -34,7 +35,7 @@ export default class App extends Component {
     }
     callbackHome() {
         this.setState({
-            show:false
+            show: false
         })
     }
     callbackNext(event) {
@@ -43,27 +44,27 @@ export default class App extends Component {
             index: parseInt(event.target.attributes.index.value)
         })
     }
+    renderPackagelist(props) {
+        return (
+            <div>
+                {
+                    this.state.data.map((element, index) => {
+                        return (
+                            <p index={index} onClick={this.hideorshow.bind(this)} style={{ color: "blue", cursor: 'pointer', textAlign: "center" }}> {element.packageName}</p>
+                        );
+                    })
+                }
+            </div>
+        );
+    }
+
     render() {
         if (this.state.data !== "" && this.state.show === false) {
-            return (
-                <div>
-                    {
-                        this.state.data.map((element, index) => {
-                            return (
-                                <p index={index} onClick={this.hideorshow.bind(this)} style={{ color: "blue", cursor: 'pointer', textAlign: "center"}}> {element.packageName}</p>
-                            )
-                        })
-                    }
-                </div>
-            );
+            return <this.renderPackagelist />
         } else if (this.state.data !== "" && this.state.show) {
-            return (
-                <Packageclass AllPackageNames={this.state.packageNames} CallbackHome={this.callbackHome.bind(this)} CallbackNext={this.callbackNext.bind(this)} Data={this.state.data[this.state.index]} />
-                )
+            return <Packageclass AllPackageNames={this.state.packageNames} CallbackHome={this.callbackHome.bind(this)} CallbackNext={this.callbackNext.bind(this)} Data={this.state.data[this.state.index]} />
         } else {
-            return (
-                <p>Waiting for data</p>
-            );
+            return <p>Waiting for data</p>
         }
     }
 }

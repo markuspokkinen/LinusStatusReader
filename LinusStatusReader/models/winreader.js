@@ -17,6 +17,12 @@ app.get("/", (req, res) => {
 function fileToOneJson(onePackage) {
     let packageName = onePackage.substring(onePackage.indexOf("Package:"), onePackage.indexOf("\r\n", onePackage.indexOf("Package: "))).split(":")[1].trim();
     if (packageName === undefined) packageName = "";
+    let description = getDescription(onePackage);
+    let depends = getDependecies(onePackage, packageName);
+    
+    return { packageName, depends, description };
+}
+function getDependecies(onePackage, packageName) {
     let tmpdepends = onePackage.substring(onePackage.indexOf("Depends:"), onePackage.indexOf("\r\n", onePackage.indexOf("Depends: "))).split(",");
 
     let depends;
@@ -37,6 +43,9 @@ function fileToOneJson(onePackage) {
             return element.trim();
         });
     }
+    return depends;
+}
+function getDescription(onePackage) {
     let desclastIndex;
     let indexOfOrigMaint = onePackage.indexOf("Original-Maintainer:");
     let indexOfHomePage = onePackage.indexOf("Homepage:");
@@ -51,7 +60,6 @@ function fileToOneJson(onePackage) {
            console.log(onePackage);
            console.log(desclastIndex);
        }*/
-    let description = onePackage.substring(onePackage.indexOf("Description: "), desclastIndex);
-    return { packageName, depends, description };
+    return onePackage.substring(onePackage.indexOf("Description: "), desclastIndex);
 }
 module.exports = app;

@@ -10,13 +10,10 @@ app.get("/", (req, res) => {
     fullData = fs.readFileSync(file).toString("ascii").split("\n\n");
     fullData.sort();
     let jsonData = fullData.map(val => fileToOneJson(val));
-    console.log("unbuntufile");
+    console.log("linuxfile");
     res.json(jsonData);
 });
-
-function fileToOneJson(onePackage) {
-    let packageName = onePackage.substring(onePackage.indexOf("Package:"), onePackage.indexOf("\n", onePackage.indexOf("Package:"))).split(":")[1];
-    if (packageName === undefined) packageName = "";
+function getDependecies(OnePackage,packageName) {
     let tmpdepends = onePackage.substring(onePackage.indexOf("Depends:"), onePackage.indexOf("\n", onePackage.indexOf("Depends:"))).split(",");
     let depends;
     if (tmpdepends[0].split(":")[1] === undefined || tmpdepends[0].split(":")[1] === packageName) depends = ["", "None"];
@@ -36,6 +33,9 @@ function fileToOneJson(onePackage) {
             return element.trim();
         });
     }
+    return depends;
+}
+function getDescription(onePackage) {
     let desclastIndex;
     let indexOfOrigMaint = onePackage.indexOf("Original-Maintainer:");
     let indexOfHomePage = onePackage.indexOf("Homepage:");
@@ -50,7 +50,14 @@ function fileToOneJson(onePackage) {
            console.log(onePackage);
            console.log(desclastIndex);
        }*/
-    let description = onePackage.substring(onePackage.indexOf("Description: "), desclastIndex);
+    return onePackage.substring(onePackage.indexOf("Description: "), desclastIndex);
+}
+function fileToOneJson(onePackage) {
+    let packageName = onePackage.substring(onePackage.indexOf("Package:"), onePackage.indexOf("\n", onePackage.indexOf("Package:"))).split(":")[1];
+    if (packageName === undefined) packageName = "";
+
+    let depends = getDependecies(onePackage, packageName);
+    let description = getDescription(onePackage);
     return { packageName, depends, description };
 }
 module.exports = app;
