@@ -12,7 +12,6 @@ export default class App extends Component {
         }
         this.renderPackagelist = this.renderPackagelist.bind(this);
     }
-
     componentDidMount() {
         fetch("/file").then(response => response.json())
             .then(res => {
@@ -21,8 +20,6 @@ export default class App extends Component {
                 this.setState({
                     data: res,
                     packageNames: listOfpackageNames
-                }, () => {
-                    console.log(this.state)
                 })
             })
     }
@@ -33,42 +30,36 @@ export default class App extends Component {
         this.setState({
             indexs: indexes,
             show: true
-        }, () => {
-                console.log(this.state)
         })
-
     }
     callbackHome() {
         this.setState({
             show: false,
-            indexs:[]
+            indexs: []
         })
     }
     callbackNext(event) {
         let index = parseInt(event.target.attributes.index.value);
         let indexes = this.state.indexs;
         indexes.push(index);
-        console.log(parseInt(event.target.attributes.index.value))
+
         this.setState({
             indexs: indexes
         })
     }
     callbackback() {
         let indexes = this.state.indexs;
-        console.log(indexes);
         indexes.pop();
-        console.log(indexes);
         if (indexes.length === 0) {
             this.setState({
                 indexs: indexes,
-                show:false
+                show: false
             })
         } else {
             this.setState({
                 indexs: indexes
             })
         }
-
     }
     renderPackagelist(props) {
         return (
