@@ -10,13 +10,16 @@ app.get("/", (req, res) => {
     fullData = fs.readFileSync(file).toString("ascii").split("\n\n");
     fullData.sort();
     let jsonData = fullData.map(val => fileToOneJson(val));
-    console.log("linuxfile");
+    console.log("unbuntufile");
     res.json(jsonData);
 });
-function getDependecies(OnePackage,packageName) {
+
+function fileToOneJson(onePackage) {
+    let packageName = onePackage.substring(onePackage.indexOf("Package:"), onePackage.indexOf("\n", onePackage.indexOf("Package:"))).split(":")[1].trim();
+    if (packageName === undefined) packageName = "";
     let tmpdepends = onePackage.substring(onePackage.indexOf("Depends:"), onePackage.indexOf("\n", onePackage.indexOf("Depends:"))).split(",");
     let depends;
-    if (tmpdepends[0].split(":")[1] === undefined || tmpdepends[0].split(":")[1].trim() === packageName) depends = ["None"];
+    if (tmpdepends[0].split(":")[1] === undefined || tmpdepends[0].split(":")[1].trim() === packageName.trim()) depends = ["", "None"];
     else {
         depends = tmpdepends.map((val, index) => {
             let element = val;
@@ -33,9 +36,6 @@ function getDependecies(OnePackage,packageName) {
             return element.trim();
         });
     }
-    return depends;
-}
-function getDescription(onePackage) {
     let desclastIndex;
     let indexOfOrigMaint = onePackage.indexOf("Original-Maintainer:");
     let indexOfHomePage = onePackage.indexOf("Homepage:");
@@ -50,14 +50,7 @@ function getDescription(onePackage) {
            console.log(onePackage);
            console.log(desclastIndex);
        }*/
-    return onePackage.substring(onePackage.indexOf("Description: "), desclastIndex);
-}
-function fileToOneJson(onePackage) {
-    let packageName = onePackage.substring(onePackage.indexOf("Package:"), onePackage.indexOf("\n", onePackage.indexOf("Package:"))).split(":")[1];
-    if (packageName === undefined) packageName = "";
-
-    let depends = getDependecies(onePackage, packageName);
-    let description = getDescription(onePackage);
+    let description = onePackage.substring(onePackage.indexOf("Description: "), desclastIndex);
     return { packageName, depends, description };
 }
 module.exports = app;

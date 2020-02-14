@@ -17,20 +17,12 @@ app.get("/", (req, res) => {
 function fileToOneJson(onePackage) {
     let packageName = onePackage.substring(onePackage.indexOf("Package:"), onePackage.indexOf("\r\n", onePackage.indexOf("Package: "))).split(":")[1].trim();
     if (packageName === undefined) packageName = "";
-    let description = getDescription(onePackage);
-    let depends = getDependecies(onePackage, packageName);
-
-    return { packageName, depends, description };
-}
-function getDependecies(onePackage, packageName) {
     let tmpdepends = onePackage.substring(onePackage.indexOf("Depends:"), onePackage.indexOf("\r\n", onePackage.indexOf("Depends: "))).split(",");
 
-    if (packageName === "gcc-4.6-base") {
-        console.log(onePackage);
-        console.log(tmpdepends);
-    }
     let depends;
-    if (tmpdepends[0].split(":")[1] === undefined || tmpdepends[0].split(":")[1].trim() === packageName) depends = ["None"];
+
+    if (tmpdepends[0].split(":")[1] === undefined || tmpdepends[0].split(":")[1].trim() === packageName.trim()) depends = ["None"];
+
     else {
         depends = tmpdepends.map((val, index) => {
             let element = val;
@@ -44,13 +36,9 @@ function getDependecies(onePackage, packageName) {
             } else {
                 element = element.split("(")[0];
             }
-            
             return element.trim();
         });
     }
-    return depends;
-}
-function getDescription(onePackage) {
     let desclastIndex;
     let indexOfOrigMaint = onePackage.indexOf("Original-Maintainer:");
     let indexOfHomePage = onePackage.indexOf("Homepage:");
@@ -60,6 +48,15 @@ function getDescription(onePackage) {
     else if (indexOfHomePage < indexOfOrigMaint) desclastIndex = indexOfHomePage;
     else if (indexOfOrigMaint < indexOfHomePage) desclastIndex = indexOfOrigMaint;
     else desclastIndex = onePackage.length;
-    return onePackage.substring(onePackage.indexOf("Description: "), desclastIndex);
+
+    /*if (packageName === " libc-bin") {
+        console.log(tmpdepends);
+        console.log(tmpdepends[0].split(":")[1].trim() === packageName.trim());
+        console.log(onePackage);
+        console.log(desclastIndex);
+    }*/
+
+    let description = onePackage.substring(onePackage.indexOf("Description: "), desclastIndex);
+    return { packageName, depends, description };
 }
 module.exports = app;
